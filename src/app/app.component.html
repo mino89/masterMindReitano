@@ -1,56 +1,77 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="text-center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-</div>
-<div *ngIf="!gameIsSet">
+<header class="text-center">
+  <b>
+    🎲 {{ title }} 🎲
+  </b>
+</header>
+<main *ngIf="!gameIsSet">
   <div class="text-center">
     <br>
-    imposta il gioco
-    <br>
-    <h1>{{codeLength}}</h1>
+    <h1>Per Iniziare</h1>
+    <h2>imposta il livello di gioco</h2>
+    <span class="game-level">{{codeLength}}</span>
     <div class="slidecontainer">
-        <input [(ngModel)]="codeLength" type="range" min="1" max="10" value="codeLength" class="slider" id="myRange">
-      </div>
-  <button (click)="setGame()">gioca</button>
+      <input [(ngModel)]="codeLength" type="range" min="1" max="10" value="codeLength" class="slider" id="myRange">
+    </div>
+    <br>
+    <button (click)="setGame()">Gioca</button>
   </div>
-</div>
-<div *ngIf="gameIsSet">
-    <div *ngIf="rightCombination || userGiveUp" class="text-center">
-        <h1 *ngIf="rightCombination">💣</h1>
-        <br>
-        <h2>
-          <span *ngFor="let number of source">
-              {{number}}
-          </span>
-        </h2>
-      </div>
+</main>
+<main *ngIf="gameIsSet">
+  <div *ngIf="rightCombination || userGiveUp" class="text-center">
+    <div *ngIf="rightCombination">
+      <i class="icon">🍾</i>
+      <br>
+      <h3>Giusto!!!</h3>
+    </div>
+    <div *ngIf="userGiveUp">
+      <i class="icon">😭</i>
+      <br>
+      <h3>Ti sei Arreso</h3>
+    </div>
+    <h2>
+      <span *ngFor="let number of source">
+        {{number}}
+      </span>
+    </h2>
+  </div>
 
-      <div *ngIf="logMessages" class="text-center">
-        elementi in posizione sbagliata: {{wrongPositionElements}}
-        <br>
-        elementi in posizione giusta: {{rightPositionElements}}
-      </div>
+  <div *ngIf="logMessages" class="text-center">
+    <i class="icon">😕</i>
+    <br>
+    <h3>Sbagliato!!!</h3>
+    <b class="error">⚠️ elementi in posizione sbagliata: {{wrongPositionElements}}</b>
+    <br>
+    <b class="error">⚠️ elementi in posizione giusta: {{rightPositionElements}}</b>
+    <br>
+    <br>
+  </div>
 
-      <div *ngIf="!rightCombination && !userGiveUp" class="text-center">
-          <label *ngFor="let number of source; let i = index">
+  <div *ngIf="!rightCombination && !userGiveUp" class="text-center">
+    <div *ngIf="!logMessages">
+      <i class="icon">💪</i>
+      <h3>Indovina la Combinazione!</h3>
+    </div>
+    <label *ngFor="let number of source; let i = index">
+      <input type="number" min="0" max="9" step="1" [(ngModel)]="userInput[i]">
+    </label>
+    <br>
+    <div class="flex-container">
+    <button (click)="compareNumbers()">Continua</button>
+    <button (click)="giveUp()">Arrenditi</button>
+    </div>
+  </div>
+  <div *ngIf="rightCombination" class="text-center">
+    <button (click)="resetGame()">Gioca Ancora</button>
+    <br>
 
-              <input type="number" min="0" max="9" step="1" [(ngModel)]="userInput[i]">
-          </label>
-          <br>
-          <button  (click)="compareNumbers()">vai</button>
-          <button (click)="giveUp()">arrenditi</button>
-      </div>
-      <div *ngIf="rightCombination" class="text-center">
-          <button (click)="resetGame()">Gioca Ancora</button>
-          <br>
+  </div>
+  <div class="text-center">
+    <button (click)="endGame()">Termina Partita</button>
 
-      </div>
-      <div class="text-center">
-          <button (click)="endGame()">Termina Partita</button>
+  </div>
+</main>
 
-      </div>
-</div>
+<footer>
 
-
+</footer>

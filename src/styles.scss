@@ -1,1 +1,90 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
+@import '../node_modules/normalize.css/normalize.css';
+$bg-color: #424242;
+$lights-color: #ffffff;
+$evidence-color: #fa8272;
+body {
+  font-family: "Source Code Pro", monospace;
+
+  background: $bg-color;
+  color: #ffffff;
+
+}
+
+app-root{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+}
+
+header{
+  background: $evidence-color;
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+}
+
+.game-level{
+  display: block;
+  font-size: 4rem;
+  color: $evidence-color;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.icon{
+  font-style: normal;
+  font-size: 5rem;
+}
+
+.error{
+  color:$evidence-color;
+  margin: 1rem;
+}
+
+.flex-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type=number]{
+  font-size: 3rem;
+  text-align: center;
+  border-radius: .5rem;
+  margin:.5rem;
+  color: $evidence-color;
+  &:focus{
+    outline: none;
+  }
+}
+
+button{
+  background: $evidence-color;
+  border-radius: 4rem;
+  padding: .5rem;
+  margin:.5rem;
+  border: none;
+  cursor: pointer;
+  color: $lights-color;
+  transition: all .3s ease;
+  box-shadow: 0 .25rem 0 0 darken($evidence-color, 5%);
+  &:focus{
+    outline: none;
+  }
+  &:hover{
+    transform: translateY(.25rem);
+    box-shadow: none;
+  }
+}

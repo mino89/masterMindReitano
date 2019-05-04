@@ -53,7 +53,6 @@ export class AppComponent implements OnInit {
     this.source = Array.from({ length: len },
       () => Math.floor(Math.random() * 9)
     );
-    console.log(this.source);
   }
 
   inputInArray(): number {

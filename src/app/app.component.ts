@@ -41,6 +41,7 @@ export class AppComponent implements OnInit {
 
   endGame(){
     this.gameIsSet = false;
+    this.logMessages = false;
     this.rightCombination = false;
     this.userGiveUp = false;
   }

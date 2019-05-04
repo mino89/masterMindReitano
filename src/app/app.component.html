@@ -36,7 +36,7 @@
     </h2>
   </div>
 
-  <div *ngIf="logMessages" class="text-center">
+  <div *ngIf="logMessages && !userGiveUp" class="text-center">
     <i class="icon">😕</i>
     <br>
     <h3>Sbagliato!!!</h3>

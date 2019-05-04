@@ -1,0 +1,56 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="text-center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+</div>
+<div *ngIf="!gameIsSet">
+  <div class="text-center">
+    <br>
+    imposta il gioco
+    <br>
+    <h1>{{codeLength}}</h1>
+    <div class="slidecontainer">
+        <input [(ngModel)]="codeLength" type="range" min="1" max="10" value="codeLength" class="slider" id="myRange">
+      </div>
+  <button (click)="setGame()">gioca</button>
+  </div>
+</div>
+<div *ngIf="gameIsSet">
+    <div *ngIf="rightCombination || userGiveUp" class="text-center">
+        <h1 *ngIf="rightCombination">💣</h1>
+        <br>
+        <h2>
+          <span *ngFor="let number of source">
+              {{number}}
+          </span>
+        </h2>
+      </div>
+
+      <div *ngIf="logMessages" class="text-center">
+        elementi in posizione sbagliata: {{wrongPositionElements}}
+        <br>
+        elementi in posizione giusta: {{rightPositionElements}}
+      </div>
+
+      <div *ngIf="!rightCombination && !userGiveUp" class="text-center">
+          <label *ngFor="let number of source; let i = index">
+
+              <input type="number" min="0" max="9" step="1" [(ngModel)]="userInput[i]">
+          </label>
+          <br>
+          <button  (click)="compareNumbers()">vai</button>
+          <button (click)="giveUp()">arrenditi</button>
+      </div>
+      <div *ngIf="rightCombination" class="text-center">
+          <button (click)="resetGame()">Gioca Ancora</button>
+          <br>
+
+      </div>
+      <div class="text-center">
+          <button (click)="endGame()">Termina Partita</button>
+
+      </div>
+</div>
+
+

@@ -1,5 +1,5 @@
+import { AppService } from './app.service';
 import { Component, OnInit } from '@angular/core';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-root',
@@ -19,15 +19,18 @@ export class AppComponent implements OnInit {
   gameIsSet = false;
   userGiveUp = false;
 
+  constructor(
+    private appService: AppService
+  ) { }
   ngOnInit() {
 
   }
 
-  giveUp(){
+  giveUp() {
     this.userGiveUp = true;
   }
 
-  setGame(){
+  setGame() {
     this.gameIsSet = true;
     this.rightCombination = false;
     this.userGiveUp = false;
@@ -35,11 +38,11 @@ export class AppComponent implements OnInit {
     this.setupInput(this.codeLength);
   }
 
-  resetGame(){
-    this.setGame()
+  resetGame() {
+    this.setGame();
   }
 
-  endGame(){
+  endGame() {
     this.gameIsSet = false;
     this.logMessages = false;
     this.rightCombination = false;
@@ -47,13 +50,11 @@ export class AppComponent implements OnInit {
   }
 
   setupInput(len: number) {
-    this.userInput = Array.from({ length: len }, () => 0)
+    this.userInput = this.appService.generateEmpty(len);
   }
 
   generateSource(len: number) {
-    this.source = Array.from({ length: len },
-      () => Math.floor(Math.random() * 9)
-    );
+    this.source = this.appService.generateRandom(len);
   }
 
   inputInArray(): number {
@@ -73,7 +74,7 @@ export class AppComponent implements OnInit {
       if (element === this.source[index]) {
         counter++;
       }
-    })
+    });
     this.rightPositionElements = counter;
     return counter;
   }

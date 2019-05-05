@@ -1,8 +1,8 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <header class="text-center">
-  <b>
-    🎲 {{ title }} 🎲
-  </b>
+
+    🎲 <b>{{ title }}</b> 🎲
+
 </header>
 <main *ngIf="!gameIsSet">
   <div class="text-center">
@@ -14,7 +14,7 @@
       <input [(ngModel)]="codeLength" type="range" min="1" max="10" value="codeLength" class="slider" id="myRange">
     </div>
     <br>
-    <button (click)="setGame()">Gioca</button>
+    <button class="start-game" (click)="setGame()">Gioca</button>
   </div>
 </main>
 <main *ngIf="gameIsSet">

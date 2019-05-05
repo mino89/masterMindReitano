@@ -26,6 +26,14 @@ export class AppComponent implements OnInit {
 
   }
 
+  setupInput(len: number) {
+    this.userInput = this.appService.generateEmpty(len);
+  }
+
+  generateSource(len: number) {
+    this.source = this.appService.generateRandom(len);
+  }
+
   giveUp() {
     this.userGiveUp = true;
   }
@@ -49,13 +57,6 @@ export class AppComponent implements OnInit {
     this.userGiveUp = false;
   }
 
-  setupInput(len: number) {
-    this.userInput = this.appService.generateEmpty(len);
-  }
-
-  generateSource(len: number) {
-    this.source = this.appService.generateRandom(len);
-  }
 
   inputInArray(): number {
     let counter = 0;
